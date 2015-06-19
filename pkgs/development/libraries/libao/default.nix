@@ -10,7 +10,8 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs =
-    [ pkgconfig libcap ] ++
+    [ pkgconfig ] ++
+    lib.optional stdenv.isLinux [ libcap ] ++
     lib.optional stdenv.isLinux (if usePulseAudio then [ libpulseaudio ] else [ alsaLib ]);
 
   meta = {
